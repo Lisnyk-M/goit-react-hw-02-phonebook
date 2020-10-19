@@ -20,8 +20,10 @@ class PhoneBook extends Component {
         }
         this.props.onAddContact(contact);
 
-        this.setState({ name: '' });
-        this.setState({ number: '' });
+        this.setState({
+            name: '',
+            number: ''
+        });
     }
 
     handleChange = e => {
@@ -55,10 +57,9 @@ class PhoneBook extends Component {
                         value={this.state.name}
                         onChange={this.handleChange}
                         onBlur={this.handleBlur}
-                    >
-                    </input>
+                    />
                     <label className={styles.label}>Number</label>
-                    <input className={styles.input} type="phone" value={this.state.number} onChange={this.handleChangeNumber}></input>
+                    <input className={styles.input} type="phone" value={this.state.number} onChange={this.handleChangeNumber}/>
                     <button type="submit" className={styles.buttonAddContact}>Add contact</button>
                 </form>
             </>
@@ -68,11 +69,11 @@ class PhoneBook extends Component {
 
 PhoneBook.propTypes = {
     onAddContact: PropTypes.func.isRequired,
-    contacts: PropTypes.shape({
+    contacts: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         number: PropTypes.string.isRequired
-    }).isRequired
+    }).isRequired)
 }
 
 export default PhoneBook;

@@ -21,12 +21,7 @@ export default class App extends Component {
         });
 
         isExistContact ? alert(contact.name + ' is already in contacts') :
-
-            this.setState(prevState => {
-                return {
-                    contacts: [...prevState.contacts, contact]
-                }
-            })
+            this.setState(prevState => ({ contacts: [...prevState.contacts, contact] }))
     }
 
     changeFilter = filter => {
@@ -41,11 +36,9 @@ export default class App extends Component {
     }
 
     removeContact = contactId => {
-        this.setState(prevState => {
-            return {
+        this.setState(prevState => ({
                 contacts: prevState.contacts.filter(({ id }) => id !== contactId)
-            }
-        })
+        }))
     }
 
     render() {
@@ -56,9 +49,9 @@ export default class App extends Component {
             <div>
                 <PhoneBook onAddContact={this.addContact} contacts={this.state.contacts} />
                 {visibleContacts.length > 0 &&
-                    <Contacts contactsArr={visibleContacts} onRemoveContact={this.removeContact}></Contacts>
+                    <Contacts contactsArr={visibleContacts} onRemoveContact={this.removeContact} />
                 }
-                <Filter value={filter} onChangeFilter={this.changeFilter}></Filter>
+                <Filter value={filter} onChangeFilter={this.changeFilter} />
             </div>
         )
     }
